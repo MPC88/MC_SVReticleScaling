@@ -83,15 +83,15 @@ namespace MC_SVReticleScaling
             if (__instance.AimObj == null)
                 return;
 
+            float scale = 1.0f;
+
             if (!cfgFixedMode.Value)
             {
                 int classVal = cfgSkipShuttle.Value ? __instance.GetSpaceShip.shipClass - 1 : __instance.GetSpaceShip.shipClass;
-                float scale = 1 + (classVal * cfgByClass.Value);
-                __instance.AimObj.transform.localScale = new Vector3(scale, 1.0f, scale);
+                scale = 1 + (classVal * cfgByClass.Value);                
             } 
             else
             {
-                float scale = 1.0f;
                 switch(__instance.GetSpaceShip.shipClass)
                 {
                     case 1:
@@ -113,10 +113,9 @@ namespace MC_SVReticleScaling
                         scale += cfgDread.Value;
                         break;
                 }
-
-                __instance.AimObj.transform.localScale = new Vector3(scale, 1.0f, scale);
             }
-            
+
+            __instance.AimObj.transform.localScale = new Vector3(scale, 1.0f, scale);
         }
     }
 }
